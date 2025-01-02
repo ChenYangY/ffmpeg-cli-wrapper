@@ -13,8 +13,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import net.bramp.commons.lang3.math.gson.FractionAdapter;
 import net.bramp.ffmpeg.adapter.FFmpegPacketsAndFramesAdapter;
+import net.bramp.ffmpeg.adapter.FFmpegStreamSideDataAdapter;
 import net.bramp.ffmpeg.gson.LowercaseEnumTypeAdapterFactory;
 import net.bramp.ffmpeg.probe.FFmpegFrameOrPacket;
+import net.bramp.ffmpeg.probe.FFmpegStream;
 import org.apache.commons.lang3.math.Fraction;
 
 /** Helper class with commonly used methods */
@@ -130,6 +132,7 @@ public final class FFmpegUtils {
     builder.registerTypeAdapterFactory(new LowercaseEnumTypeAdapterFactory());
     builder.registerTypeAdapter(Fraction.class, new FractionAdapter());
     builder.registerTypeAdapter(FFmpegFrameOrPacket.class, new FFmpegPacketsAndFramesAdapter());
+    builder.registerTypeAdapter(FFmpegStream.SideData.class, new FFmpegStreamSideDataAdapter());
 
     return builder.create();
   }
