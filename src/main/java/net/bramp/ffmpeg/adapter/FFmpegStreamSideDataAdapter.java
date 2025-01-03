@@ -12,7 +12,7 @@ public class FFmpegStreamSideDataAdapter implements JsonDeserializer<FFmpegStrea
     public FFmpegStream.SideData deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         if (!(jsonElement instanceof JsonObject)) return null;
         try {
-            Object sideData = Class.forName(FFmpegStream.SideData.class.getName()).newInstance();
+            Object sideData = Class.forName(FFmpegStream.SideData.class.getName()).getConstructor().newInstance();
             Field[] fields = Class.forName(FFmpegStream.SideData.class.getName()).getFields();
             for (Field field: fields) {
                 String fieldName = field.getName();
